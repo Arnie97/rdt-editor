@@ -39,9 +39,4 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
-.bs-text.text-4 {
-  flex-grow: 1;
-  text-align: end;
-}
 </style>

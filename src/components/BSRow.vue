@@ -47,12 +47,22 @@ export default {
   computed: {
     parts() {
       let leftTextSep = this.content.indexOf('! !');
-      let offset = leftTextSep < 0? 0: leftTextSep + 3;
-      return this.content.slice(offset).split('~~').map((part) => {
+      leftTextSep = leftTextSep < 0? 0: leftTextSep + 3;
+
+      let offset = 0;
+      let leftParts = this.content.slice(0, leftTextSep).split('~~').map((part) => {
         const o = offset;
         offset += part.length + 2;
         return { part, offset: o };
       });
+
+      offset = leftTextSep;
+      let rightParts = this.content.slice(offset).split('~~').map((part) => {
+        const o = offset;
+        offset += part.length + 2;
+        return { part, offset: o };
+      });
+      return [].concat(rightParts.slice(0, 1), leftParts, rightParts.slice(1));
     },
     cells() {
       let offset = this.parts[0].offset;

@@ -46,15 +46,16 @@ export default {
   },
   computed: {
     parts() {
-      let offset = 0;
-      return this.content.split('~~').map((part) => {
+      let leftTextSep = this.content.indexOf('! !');
+      let offset = leftTextSep < 0? 0: leftTextSep + 3;
+      return this.content.slice(offset).split('~~').map((part) => {
         const o = offset;
         offset += part.length + 2;
         return { part, offset: o };
       });
     },
     cells() {
-      let offset = 0;
+      let offset = this.parts[0].offset;
       return this.parts[0].part.split('\\').map((cell) => {
         const o = offset;
         offset += cell.length + 1;

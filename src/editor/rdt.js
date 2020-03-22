@@ -21,7 +21,7 @@ ace.define('ace/mode/rdt_highlight_rules',
           },
           {
             token: 'punctuation.definition.string',
-            regex: '(?:~~.*$)',
+            regex: '(?:~~.*$|.*! !)',
           },
           {
             token: 'keyword.control.statement.rdt',
